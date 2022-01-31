@@ -1,0 +1,52 @@
+{% comment %} <nav class="navbar">
+    <a href="{% url 'posts:index' %}" class="navbar__logo">PAL</a>
+
+    <div class="navbar__btn-container">
+        {% if request.user.is_authenticated %}
+            <p>Hello, {{ request.user.username }} </p>
+            <a href="{% url 'user:log-out' %}" class="navbar__btn-container--logout">Log Out</a>
+        {% else %}
+            <a href="{% url 'user:sign-in' %}" class="navbar__btn-container--signin">Sign in</a>
+            <a href="{% url 'user:sign-up' %}" class="navbar__btn-container--signup">Sign up</a>
+        {% endif %}
+    </div>
+    
+</nav> {% endcomment %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <div class="container-fluid">
+      <h1 class="navbar-brand">PAL</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'posts:index' %}">All Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'posts:create-post' %}">Create Post</a>
+          </li>
+        </ul>
+
+        <div class="d-flex align-center">
+            {% if request.user.is_authenticated %}
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        Hello, {{ request.user.username }}!
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><a class="dropdown-item" href="{% url 'user:log-out' %}">Logout</a></li>
+                    </ul>
+                  </div>
+            {% else %}
+                <div>
+                    <a href="{% url 'user:sign-in' %}" class="btn btn-outline-secondary">Sign in</a>
+                    <a href="{% url 'user:sign-up' %}" class="btn btn-primary">Sign up</a>
+                </div>
+            {% endif %}
+        </div>
+        
+      </div>
+    </div>
+  </nav>

@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-between align-items-center">
+    <a href="{% url 'posts:create-post' %}" class="btn btn-outline-success">Create Post</a>
+    
+    <form method="GET" action="{% url 'posts:index' %}" class="d-flex mr-5">
+        <input id="search_all_input" class="form-control me-2" name="q" type="search" placeholder="Search posts, comments, topics, users..." aria-label="Search">
+        <button class="btn btn-outline-primary" type="submit">Search</button>
+    </form>
+</div>
+
+{% for post in posts %}
+
+    {% if post.topic_set.all.count == 0 %}
+        <h1>No posts :(</h1>
+    {% endif %}
+
+    <div class="card mt-3">
+
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <div>
+                <p>Posted by <b>@{{ post.user }}</b> - {{ post.created|timesince }} ago</p>
+                <small>Topic: <a href="{% url 'posts:index' %}?q={{ post.topic.name }}" class="text-muted">{{ post.topic }}</a></small>
+            </div>
+
+            {% if request.user == post.user %}
+            <div>
+                <a href="{% url 'posts:update-post' post.id %}?next={{ request.path|urlencode }}" class="btn btn-outline-secondary">update</a>
+                <a href="{% url 'posts:delete-post' post.id %}?next={{ request.path|urlencode }}" class="btn btn-outline-danger">delete</a>
+            </div>
+            {% endif %}
+        </div>
+
+        <div class="card-body">
+            <h5>
+            <a class="card-title" href="{% url 'posts:post' post.id %}">{{ post.name }}</a>
+            </h5>
+            <p class="card-text">{{ post.description }}</p>
+            <small class="d-block mb-1">
+                <a href="{% url 'posts:post' post.id %}" class=" text-muted">{{ post.comment_set.all.count }} comments</a>
+            </small>
+        </div>
+    </div>
+
+{% endfor %}

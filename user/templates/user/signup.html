@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    
+    <div class="wrapper">
+        <div class="form__container signup__form">
+            <form action="" method='POST' class="form">
+                {% csrf_token %}
+
+                {{ form }}
+
+                <input type="submit" value="Sign up" class="btn btn-primary">
+            </form>
+
+            <div class="signin__container">
+                <p>Already got an account?</p>
+                <a href="{% url 'user:sign-in' %}" class="btn btn-outline-secondary">Sign In</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}
+    

@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+<div class="modal-dialog">
+    <div class="modal-content">
+        <form action="" method="POST">
+            <div class="modal-header">
+                <h5 class="modal-title">Delete</h5>
+            </div>
+
+            <div class="modal-body">
+                {% csrf_token %}
+            
+                <p>Are you sure you want to delete <b>"{{ to_delete }}"</b> ?</p>
+            
+                <input type="hidden" name="next" value={{ request.GET.next }}>
+            </div>
+
+            <div class="modal-footer">
+                <a href="{{ request.META.HTTP_REFERER }}">Cancel</a>
+                <input type="submit" value="Delete" class="btn btn-danger">
+            </div>
+        </form>
+    </div>
+</div>
+
+  
+
+{% endblock content %}

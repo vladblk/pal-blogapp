@@ -1,0 +1,18 @@
+
+<ul class="list-group">
+    <li class="list-group-item bg-light">
+        <b>Hot Topics</b>
+    </li>
+
+    <li class="list-group-item d-flex justify-content-between align-items-center">
+        <a href="{% url 'posts:index' %}">ALL TOPICS</a>
+        <span class="badge bg-primary rounded-pill">{{ posts_count }}</span>
+    </li>
+
+    {% for topic in topics %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <a href="{% url 'posts:index' %}?q={{ topic.name }}">{{ topic.name }}</a>
+            <span class="badge bg-primary rounded-pill">{{ topic.post_set.all.count }}</span>
+        </li>
+    {% endfor %}
+</ul>

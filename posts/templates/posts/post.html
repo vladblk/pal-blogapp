@@ -1,0 +1,64 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<!-- Modal -->
+<div class="modal fade" id="editCommentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div><!-- /.modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+</div><!-- /.modal -->
+
+<div class="mt-5">
+    <h1>{{ post.name }}</h3>
+    <p>{{ post.description }}</p>
+
+    {% if request.user == post.user %}
+        <a href="{% url 'posts:update-post' post.id %}?next={{ request.path|urlencode }}" class="btn btn-outline-secondary" data-target="#editCommentModal">update</a>
+        <a href="{% url 'posts:delete-post' post.id %}?next={{ request.path|urlencode }}" class="btn btn-outline-danger" data-target="#deleteModal">delete</a>
+    {% endif %}
+</div>
+
+<hr />
+
+<h4>Comments</h4>
+{% if request.user.is_authenticated %}
+    <div class="mb-3">
+        <form action="" method='POST'>
+            {% csrf_token %}
+
+            <label for="formGroupExampleInput" class="form-label">Enter your comment here</label>
+            <textarea name="comment" id="comment-textarea" class="form-control" cols="50" rows="5" placeholder="Enter your comment..."></textarea>
+
+            <input type="submit" value="Add comment" class="btn btn-success">
+        </form>
+    </div>
+{% endif %}
+
+<div class="comment-container mt-5">
+    {% if comments.count == 0 %}
+        <p>No comments :(</p>
+    {% endif %}
+
+
+    {% for comment in comments %}
+
+        <div class="comment">
+            <p><b>@{{ comment.user }}</b> - {{ comment.created|timesince }} ago</p>
+            <p>{{ comment.body }}</p>
+
+            {% if request.user == comment.user %}
+                <small>
+                    <a href="{% url 'comments:update-comment' comment.id %}?next={{ request.path|urlencode }}" class="text-secondary">edit</a>
+                </small>
+                <small>
+                    <a href="{% url 'comments:delete-comment' comment.id %}?next={{ request.path|urlencode }}" class="text-danger">delete</a>
+                </small>
+            {% endif %}
+        </div>
+
+    {% endfor %}
+</div>
+
+{% endblock content %}

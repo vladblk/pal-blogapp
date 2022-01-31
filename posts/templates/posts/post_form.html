@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="wrapper">
+    <div class="form__container">
+        <form action="" method="POST" class="form">
+            {% csrf_token %}
+        
+            {{ form }}
+        
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
+            
+            <div class="btn-container">
+                <a href="{{ request.META.HTTP_REFERER }}" class="btn btn-secondary">Cancel</a> 
+                <input type="submit" value="Submit" class="btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

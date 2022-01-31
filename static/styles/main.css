@@ -1,0 +1,104 @@
+@import url('base.css');
+@import url('navbar.css');
+
+.navbar-brand {
+    font-size: 2rem;
+    padding: 0;
+    margin: 0;
+    margin-right: 2rem;
+    letter-spacing: .5rem;
+}
+
+.card-text {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.card-header p {
+    margin-bottom: 0;
+}
+
+.btn-outline-primary {
+    margin-left: 1rem;
+}
+
+.navbar {
+    padding: .8rem 2rem;
+}
+
+.wrapper {
+    width: 100%;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form__container {
+    border: 2px solid grey;
+    border-radius: 10px;
+    padding: 5rem 7rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#id_name, #id_description, #id_topic, #username, #password {
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+#comment-textarea {
+    margin-bottom: 1rem;
+}
+
+.comment-container {
+    padding-left: 10px;
+    border-left: 1px solid grey;
+}
+
+.comment {
+    margin-bottom: 10px;
+}
+
+#id_body {
+    width: 100%;
+    padding: 10px;
+}
+
+.signup__container, .signin__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
+}
+ 
+.signup__form span {
+    font-size: 12px;
+    margin-bottom: 1rem;
+}
+
+.form-delete__btns {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.homepage {
+    display: flex;
+}
+
+#search_all_input {
+    width: 25rem;
+}
+
+.btn-outline-primary {
+    margin-left: 0;
+}

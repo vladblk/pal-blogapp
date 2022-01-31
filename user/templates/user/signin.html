@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <div class="wrapper">
+        <div class="form__container">
+            <form action="" method='POST' class="form">
+                {% csrf_token %}
+    
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Enter username">
+    
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" placeholder="Enter password">
+    
+                <input type="submit" value="Sign in" class="btn btn-outline-secondary">
+    
+            </form>
+            
+            <div class="signup__container">
+                <p>Don't you have an account?</p>
+                <a href="{% url 'user:sign-up' %}" class="btn btn-primary">Sign up</a>
+            </div>
+        </div>
+    </div>
+    
+
+{% endblock content %}
